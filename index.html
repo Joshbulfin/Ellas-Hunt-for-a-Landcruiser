@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ella's Land Cruiser Hunt | 76 Series & Troopy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --desert-sand: #D4A574;
+            --outback-red: #8B4513;
+            --eucalyptus: #4A6741;
+            --dust: #C9B79C;
+            --shadow: #2C2416;
+            --cream: #F5F1E8;
+            --rust: #B85C38;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--dust) 100%);
+            color: var(--shadow);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Elements */
+        .bg-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, var(--shadow) 10px, var(--shadow) 11px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .tire-tracks {
+            position: fixed;
+            top: 20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            opacity: 0.05;
+            transform: rotate(-15deg);
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 20px,
+                var(--shadow) 20px,
+                var(--shadow) 30px,
+                transparent 30px,
+                transparent 40px
+            );
+            animation: drift 40s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes drift {
+            from { transform: translateX(0) rotate(-15deg); }
+            to { transform: translateX(-100px) rotate(-15deg); }
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(139, 69, 19, 0.15) 0%, transparent 100%);
+            border-bottom: 4px solid var(--outback-red);
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--outback-red);
+            letter-spacing: 4px;
+            text-shadow: 3px 3px 0 var(--desert-sand);
+            margin-bottom: 0.5rem;
+            animation: fadeIn 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--eucalyptus);
+            font-weight: 600;
+            letter-spacing: 2px;
+            animation: fadeIn 1s ease-out 0.6s backwards;
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            z-index: 1;
+        }
+
+        /* Mission Statement */
+        .mission {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 0;
+            border-left: 8px solid var(--rust);
+            box-shadow: 12px 12px 0 rgba(139, 69, 19, 0.15);
+            margin-bottom: 3rem;
+            transform: rotate(-0.5deg);
+            animation: slideInLeft 1s ease-out 0.8s backwards;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px) rotate(-0.5deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotate(-0.5deg);
+            }
+        }
+
+        .mission h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            color: var(--rust);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .mission p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--shadow);
+        }
+
+        /* Vehicle Cards */
+        .vehicles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .vehicle-card {
+            background: white;
+            border: 3px solid var(--desert-sand);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            animation: popIn 0.6s ease-out backwards;
+        }
+
+        .vehicle-card:nth-child(1) { animation-delay: 1s; }
+        .vehicle-card:nth-child(2) { animation-delay: 1.2s; }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .vehicle-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 20px 20px 0 rgba(184, 92, 56, 0.2);
+            border-color: var(--rust);
+        }
+
+        .vehicle-header {
+            background: linear-gradient(135deg, var(--outback-red) 0%, var(--rust) 100%);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vehicle-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .vehicle-card:hover .vehicle-header::before {
+            left: 100%;
+        }
+
+        .vehicle-header h3 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            color: var(--cream);
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .vehicle-body {
+            padding: 2rem;
+        }
+
+        .specs {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .specs li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--dust);
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .specs li:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: 600;
+            color: var(--eucalyptus);
+        }
+
+        .spec-value {
+            color: var(--shadow);
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--eucalyptus);
+            color: var(--cream);
+            padding: 3rem 2rem;
+            margin: 3rem -2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .features h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: 3px;
+            position: relative;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-left: 4px solid var(--desert-sand);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
+            border-left-color: var(--rust);
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        /* Checklist */
+        .checklist {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 0;
+            border: 3px solid var(--desert-sand);
+            box-shadow: -12px 12px 0 rgba(74, 103, 65, 0.15);
+            transform: rotate(0.5deg);
+            margin-bottom: 3rem;
+        }
+
+        .checklist h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            color: var(--eucalyptus);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .checklist ul {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: var(--cream);
+            border-left: 4px solid var(--rust);
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .checklist li:hover {
+            background: var(--dust);
+            transform: translateX(10px);
+            border-left-width: 8px;
+        }
+
+        .checklist li::before {
+            content: '☐ ';
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+            color: var(--rust);
+        }
+
+        /* Personal Note */
+        .personal-note {
+            background: linear-gradient(135deg, var(--rust) 0%, var(--outback-red) 100%);
+            padding: 3rem 2.5rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid var(--desert-sand);
+            box-shadow: 15px 15px 0 rgba(139, 69, 19, 0.2);
+        }
+
+        .personal-note::before {
+            content: '✓';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            font-size: 300px;
+            color: rgba(255, 255, 255, 0.05);
+            font-weight: bold;
+            transform: rotate(-15deg);
+        }
+
+        .note-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .personal-note h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .personal-note p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--cream);
+            margin-bottom: 1.2rem;
+        }
+
+        .personal-note strong {
+            color: var(--desert-sand);
+            font-weight: 700;
+        }
+
+        .signature {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.5rem;
+            color: var(--desert-sand);
+            margin-top: 2rem;
+            margin-bottom: 0;
+            letter-spacing: 1px;
+        }
+
+        /* Listings Section */
+        .listings-intro {
+            background: var(--cream);
+            padding: 2.5rem;
+            border-radius: 0;
+            border-left: 8px solid var(--rust);
+            box-shadow: 12px 12px 0 rgba(139, 69, 19, 0.15);
+            margin-bottom: 3rem;
+            transform: rotate(-0.5deg);
+        }
+
+        .listings-intro h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.5rem;
+            color: var(--rust);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .listings-intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--shadow);
+            margin-bottom: 1rem;
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .listings-grid .listing-card {
+            background: white;
+            border: 3px solid var(--desert-sand);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .listings-grid .listing-card:hover {
+            transform: translateY(-10px) rotate(-1deg);
+            box-shadow: 20px 20px 0 rgba(184, 92, 56, 0.2);
+            border-color: var(--rust);
+        }
+
+        .listings-grid .listing-header {
+            background: linear-gradient(135deg, var(--eucalyptus) 0%, var(--outback-red) 100%);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .listings-grid .listing-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .listings-grid .listing-card:hover .listing-header::before {
+            left: 100%;
+        }
+
+        .listings-grid .listing-header h3 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 2.2rem;
+            color: var(--cream);
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .listings-grid .listing-body {
+            padding: 2rem;
+        }
+
+        .listings-grid .listing-body p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .listing-link {
+            display: block;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--rust);
+            color: var(--cream);
+            text-align: center;
+            text-decoration: none;
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .listing-link:hover {
+            background: var(--outback-red);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.4);
+        }
+
+        .listing-link:active {
+            transform: translateY(0);
+        }
+
+        /* Mechanics Section */
+        .mechanics-section {
+            background: var(--shadow);
+            color: var(--cream);
+            padding: 4rem 2rem;
+            margin: 3rem -2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mechanics-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .mechanics-section h2 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+            position: relative;
+            color: var(--desert-sand);
+        }
+
+        .mechanics-intro {
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .states-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .state-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid var(--desert-sand);
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .state-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--rust);
+        }
+
+        .state-card h3 {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.8rem;
+            color: var(--rust);
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--desert-sand);
+            padding-bottom: 0.5rem;
+        }
+
+        .mechanic-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mechanic-item {
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(212, 165, 116, 0.3);
+        }
+
+        .mechanic-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .mechanic-item strong {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--desert-sand);
+            margin-bottom: 0.5rem;
+        }
+
+        .mechanic-item p {
+            font-size: 0.95rem;
+            color: var(--cream);
+            margin-bottom: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .mechanic-item a {
+            display: inline-block;
+            color: var(--rust);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .mechanic-item a:hover {
+            color: var(--desert-sand);
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--shadow);
+            color: var(--cream);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .footer-emphasis {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.8rem;
+            color: var(--desert-sand);
+            display: block;
+            margin-top: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .vehicles {
+                grid-template-columns: 1fr;
+            }
+
+            .listings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .states-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mechanics-section {
+                margin: 3rem 0 0;
+                padding: 3rem 1.5rem;
+            }
+
+            .personal-note {
+                padding: 2rem 1.5rem;
+                margin: 2rem 0;
+            }
+
+            .personal-note h2 {
+                font-size: 2.2rem;
+            }
+
+            .personal-note p {
+                font-size: 1.1rem;
+            }
+
+            .features {
+                margin: 3rem 0;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .mission, .checklist, .listings-intro {
+                transform: rotate(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-texture"></div>
+    <div class="tire-tracks"></div>
+
+    <header>
+        <h1>ELLA'S LAND CRUISER HUNT</h1>
+        <p class="subtitle">76 SERIES & TROOPY SEARCH COMMAND</p>
+    </header>
+
+    <div class="container">
+        <section class="mission">
+            <h2>MISSION BRIEFING</h2>
+            <p>You're on the hunt for the legendary Toyota Land Cruiser 76 Series - the ultimate go-anywhere, do-anything 4WD that's built like a tank and laughs at obstacles. Whether it's the wagon or the iconic Troopy, these machines are engineered for serious adventure and legendary reliability. Let's find your perfect one.</p>
+        </section>
+
+        <section class="vehicles">
+            <div class="vehicle-card">
+                <div class="vehicle-header">
+                    <h3>76 SERIES WAGON</h3>
+                </div>
+                <div class="vehicle-body">
+                    <ul class="specs">
+                        <li>
+                            <span class="spec-label">Engine</span>
+                            <span class="spec-value">4.5L V8 Turbo Diesel</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Power</span>
+                            <span class="spec-value">151kW / 430Nm</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Drivetrain</span>
+                            <span class="spec-value">4WD with Low Range</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Seating</span>
+                            <span class="spec-value">5-8 Seats</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Perfect For</span>
+                            <span class="spec-value">Family Adventures</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vehicle-card">
+                <div class="vehicle-header">
+                    <h3>TROOPCARRIER</h3>
+                </div>
+                <div class="vehicle-body">
+                    <ul class="specs">
+                        <li>
+                            <span class="spec-label">Engine</span>
+                            <span class="spec-value">4.5L V8 Turbo Diesel</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Power</span>
+                            <span class="spec-value">151kW / 430Nm</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Drivetrain</span>
+                            <span class="spec-value">4WD with Low Range</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Seating</span>
+                            <span class="spec-value">3-13 Seats</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Perfect For</span>
+                            <span class="spec-value">Ultimate Versatility</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2>WHY THE 76 SERIES?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>🏔️ Unstoppable Off-Road</h3>
+                    <p>Purpose-built solid axles, manual locking diffs, and legendary articulation</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🔧 Built to Last</h3>
+                    <p>Simple, proven mechanicals that you can fix anywhere with basic tools</p>
+                </div>
+                <div class="feature-item">
+                    <h3>💪 Serious Towing</h3>
+                    <p>3,500kg braked towing capacity - haul whatever you need</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🛠️ Customizable</h3>
+                    <p>Massive aftermarket support for any build you can imagine</p>
+                </div>
+                <div class="feature-item">
+                    <h3>⛽ Diesel Power</h3>
+                    <p>V8 turbo diesel with serious torque and respectable fuel economy</p>
+                </div>
+                <div class="feature-item">
+                    <h3>💎 Holds Value</h3>
+                    <p>These things hold their value like gold - a smart investment</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="checklist">
+            <h2>BUYER'S CHECKLIST</h2>
+            <ul>
+                <li>Check service history - regular maintenance is crucial</li>
+                <li>Inspect for rust, especially chassis and floor</li>
+                <li>Test the 4WD system thoroughly - engage low range</li>
+                <li>Look for signs of hard off-road use or recovery point damage</li>
+                <li>Check turbo for smoke on acceleration</li>
+                <li>Inspect suspension for wear and modifications</li>
+                <li>Verify genuine Toyota parts if modified</li>
+                <li>Test all electrical systems and switches</li>
+                <li>Check for oil leaks around engine and diffs</li>
+                <li>Take it for a proper test drive on varied terrain</li>
+            </ul>
+        </section>
+
+        <!-- PERSONAL NOTE -->
+        <section class="personal-note">
+            <div class="note-content">
+                <h2>DON'T STRESS!</h2>
+                <p>Listen, I know that checklist looks intimidating and buying a car can feel overwhelming. But here's the thing — <strong>I'm happy to come with you to check out any of these!</strong></p>
+                <p>Seriously, if you find one that looks good, let me know. I'd love to help you inspect it, test drive it, and make sure you're getting a solid rig. Plus, if it means a road trip to check out a Troopy in another state? Even better! That's half the fun.</p>
+                <p class="signature">You've got this. Let's find you the perfect Land Cruiser! 🚙</p>
+            </div>
+        </section>
+
+        <!-- LISTINGS SECTION -->
+        <section class="listings-intro">
+            <h2>CURRENT LISTINGS</h2>
+            <p>Here are some active Land Cruiser Troopcarrier listings I've found for you! Click through to see the full details, photos, and pricing on each listing. Remember to inspect thoroughly and test drive before making any decisions.</p>
+            <p><strong>Pro tip:</strong> These listings can sell fast, so don't wait too long if you find one you love! Set up alerts on these platforms to get notified of new listings.</p>
+        </section>
+
+        <section class="listings-grid">
+            <div class="listing-card">
+                <div class="listing-header">
+                    <h3>CARSALES LISTING 1</h3>
+                </div>
+                <div class="listing-body">
+                    <p>Check out this Troopcarrier listing on Carsales.</p>
+                    <a href="https://www.carsales.com.au/cars/details/1996-toyota-landcruiser-troopcarrier-manual-4x4/SSE-AD-19522637/" target="_blank" class="listing-link">VIEW LISTING →</a>
+                </div>
+            </div>
+
+            <div class="listing-card">
+                <div class="listing-header">
+                    <h3>FACEBOOK MARKETPLACE</h3>
+                </div>
+                <div class="listing-body">
+                    <p>Private sale Troopy on Facebook Marketplace.</p>
+                    <a href="https://www.facebook.com/marketplace/item/1498819487929945?ref=saved&referral_code=null" target="_blank" class="listing-link">VIEW LISTING →</a>
+                </div>
+            </div>
+
+            <div class="listing-card">
+                <div class="listing-header">
+                    <h3>CARSALES LISTING 2</h3>
+                </div>
+                <div class="listing-body">
+                    <p>Another Troopcarrier available on Carsales.</p>
+                    <a href="https://www.carsales.com.au/cars/details/1996-toyota-landcruiser-troopcarrier-manual-4x4/SSE-AD-19606901/" target="_blank" class="listing-link">VIEW LISTING →</a>
+                </div>
+            </div>
+
+            <div class="listing-card">
+                <div class="listing-header">
+                    <h3>CARSALES LISTING 3</h3>
+                </div>
+                <div class="listing-body">
+                    <p>Check out this Land Cruiser listing.</p>
+                    <a href="https://www.carsales.com.au/cars/details/2000-toyota-landcruiser-troopcarrier-manual-4x4/SSE-AD-15434128/" target="_blank" class="listing-link">VIEW LISTING →</a>
+                </div>
+            </div>
+
+            <div class="listing-card">
+                <div class="listing-header">
+                    <h3>CARSALES LISTING 4</h3>
+                </div>
+                <div class="listing-body">
+                    <p>Land Cruiser Troopcarrier on Carsales.</p>
+                    <a href="https://www.carsales.com.au/cars/details/1991-toyota-landcruiser-troopcarrier-manual-4x4/SSE-AD-19826628/" target="_blank" class="listing-link">VIEW LISTING →</a>
+                </div>
+            </div>
+
+            <div class="listing-card">
+                <div class="listing-header">
+                    <h3>SEARCH MORE</h3>
+                </div>
+                <div class="listing-body">
+                    <p>Browse all available Land Cruiser 76 Series and Troopy listings.</p>
+                    <a href="https://www.carsales.com.au/cars/toyota/land-cruiser-70-series/" target="_blank" class="listing-link">SEARCH CARSALES →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRE-PURCHASE INSPECTION MECHANICS -->
+        <section class="mechanics-section">
+            <h2>PRE-PURCHASE INSPECTION MECHANICS</h2>
+            <p class="mechanics-intro">Get a professional inspection before you buy! Here are trusted pre-purchase inspection specialists in each state:</p>
+            
+            <div class="states-grid">
+                <!-- NSW -->
+                <div class="state-card">
+                    <h3>NEW SOUTH WALES</h3>
+                    <div class="mechanic-list">
+                        <div class="mechanic-item">
+                            <strong>NRMA Car Inspections</strong>
+                            <p>Comprehensive pre-purchase vehicle inspections</p>
+                            <a href="https://www.mynrma.com.au/cars-and-driving/car-servicing/vehicle-inspections" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>National Vehicle Inspections</strong>
+                            <p>Mobile pre-purchase inspection service</p>
+                            <a href="https://www.nationalvehicleinspections.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>AutoGuru Mobile Inspections</strong>
+                            <p>Independent mobile inspection specialists</p>
+                            <a href="https://www.autoguru.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIC -->
+                <div class="state-card">
+                    <h3>VICTORIA</h3>
+                    <div class="mechanic-list">
+                        <div class="mechanic-item">
+                            <strong>RACV Vehicle Inspections</strong>
+                            <p>Professional pre-purchase inspections</p>
+                            <a href="https://www.racv.com.au/on-the-road/buying-a-car/vehicle-inspections.html" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>Car Inspector</strong>
+                            <p>Mobile pre-purchase inspection service across Victoria</p>
+                            <a href="https://www.carinspector.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>Pre Purchase Car Inspections Melbourne</strong>
+                            <p>Specialist vehicle inspection service</p>
+                            <a href="https://prepurchasecarinspections.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QLD -->
+                <div class="state-card">
+                    <h3>QUEENSLAND</h3>
+                    <div class="mechanic-list">
+                        <div class="mechanic-item">
+                            <strong>RACQ Vehicle Inspections</strong>
+                            <p>Trusted pre-purchase inspection service</p>
+                            <a href="https://www.racq.com.au/cars-and-driving/cars/buying-and-selling/vehicle-inspection" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>Prestige Pre Purchase Inspections</strong>
+                            <p>Mobile inspection specialists in Brisbane</p>
+                            <a href="https://prestigeppi.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>AutoGuru Queensland</strong>
+                            <p>Mobile pre-purchase inspections</p>
+                            <a href="https://www.autoguru.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WA -->
+                <div class="state-card">
+                    <h3>WESTERN AUSTRALIA</h3>
+                    <div class="mechanic-list">
+                        <div class="mechanic-item">
+                            <strong>RAC Vehicle Inspections</strong>
+                            <p>Comprehensive pre-purchase inspections</p>
+                            <a href="https://rac.com.au/cars-and-driving/buying-a-car/vehicle-inspection" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>Perth Mobile Mechanics</strong>
+                            <p>Mobile pre-purchase inspection service</p>
+                            <a href="https://perthmobilemechanics.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>WA Vehicle Inspections</strong>
+                            <p>Independent inspection specialists</p>
+                            <a href="https://www.wavehicleinspections.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SA -->
+                <div class="state-card">
+                    <h3>SOUTH AUSTRALIA</h3>
+                    <div class="mechanic-list">
+                        <div class="mechanic-item">
+                            <strong>RAA Vehicle Inspections</strong>
+                            <p>Professional pre-purchase inspections</p>
+                            <a href="https://www.raa.com.au/cars-and-driving/buying-a-car/vehicle-inspections" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>Adelaide Mobile Mechanics</strong>
+                            <p>Mobile pre-purchase inspection service</p>
+                            <a href="https://adelaidemobilemechanics.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>Vehicle Inspection Services SA</strong>
+                            <p>Independent vehicle inspections</p>
+                            <a href="https://www.vehicleinspections.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAS -->
+                <div class="state-card">
+                    <h3>TASMANIA</h3>
+                    <div class="mechanic-list">
+                        <div class="mechanic-item">
+                            <strong>RACT Vehicle Inspections</strong>
+                            <p>Trusted pre-purchase inspections</p>
+                            <a href="https://www.ract.com.au/cars-transport/buying-selling/pre-purchase-inspections" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>Tasmanian Mobile Mechanics</strong>
+                            <p>Mobile inspection service across Tasmania</p>
+                            <a href="https://tasmanianmobilemechanics.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>AutoGuru Tasmania</strong>
+                            <p>Mobile pre-purchase inspections</p>
+                            <a href="https://www.autoguru.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACT -->
+                <div class="state-card">
+                    <h3>ACT</h3>
+                    <div class="mechanic-list">
+                        <div class="mechanic-item">
+                            <strong>NRMA Vehicle Inspections</strong>
+                            <p>Professional pre-purchase inspections in Canberra</p>
+                            <a href="https://www.mynrma.com.au/cars-and-driving/car-servicing/vehicle-inspections" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>Canberra Mobile Mechanics</strong>
+                            <p>Mobile pre-purchase inspection service</p>
+                            <a href="https://canberramobilemechanics.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>Capital Pre Purchase Inspections</strong>
+                            <p>Specialist vehicle inspection service</p>
+                            <a href="https://www.capitalppi.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NT -->
+                <div class="state-card">
+                    <h3>NORTHERN TERRITORY</h3>
+                    <div class="mechanic-list">
+                        <div class="mechanic-item">
+                            <strong>Darwin Mobile Mechanics</strong>
+                            <p>Mobile pre-purchase inspection service</p>
+                            <a href="https://darwinmobilemechanics.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>Territory Vehicle Inspections</strong>
+                            <p>Pre-purchase inspections across NT</p>
+                            <a href="https://www.territoryvehicleinspections.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                        <div class="mechanic-item">
+                            <strong>AutoGuru Northern Territory</strong>
+                            <p>Mobile inspection specialists</p>
+                            <a href="https://www.autoguru.com.au/" target="_blank">Visit Website →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Good luck with the hunt, Ella!</p>
+        <span class="footer-emphasis">FIND YOUR ADVENTURE MACHINE</span>
+    </footer>
+</body>
+</html>
